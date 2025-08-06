@@ -397,6 +397,7 @@
             }
         }
         
+        
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .hero-title {
@@ -409,6 +410,182 @@
             
             .section-title {
                 font-size: 1.8rem;
+            }
+        }
+
+        /* Estilos para el chatbot */
+        .chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            width: 350px;
+            max-width: 90%;
+            transition: all 0.3s ease;
+        }
+        
+        .chatbot-closed {
+            transform: translateY(calc(100% - 60px));
+        }
+        
+        .chatbot-header {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 15px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chatbot-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin: 0;
+        }
+        
+        .chatbot-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        .chatbot-body {
+            background-color: white;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #e2e8f0;
+            border-bottom: none;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .message {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 18px;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .bot-message {
+            background-color: #f1f1f1;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+        
+        .user-message {
+            background-color: var(--primary-blue);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .chat-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .chat-option {
+            background-color: #e2e8f0;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 15px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .chat-option:hover {
+            background-color: #cbd5e0;
+        }
+        
+        .chat-input-container {
+            display: flex;
+            border-top: 1px solid #e2e8f0;
+            padding: 10px;
+            background: white;
+        }
+        
+        .chat-input {
+            flex: 1;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 8px 15px;
+            outline: none;
+        }
+        
+        .chat-send {
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            margin-left: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .chatbot-footer {
+            background-color: white;
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            border-top: none;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--light-text);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .chatbot-footer a {
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+        
+        .whatsapp-icon {
+            color: #25D366;
+            margin-right: 5px;
+        }
+        
+        /* Estado inicial cerrado */
+        .chatbot-container.chatbot-closed .chatbot-body,
+        .chatbot-container.chatbot-closed .chatbot-footer {
+            display: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 576px) {
+            .chatbot-container {
+                width: 300px;
+                right: 10px;
+                bottom: 10px;
+            }
+            
+            .chatbot-body {
+                height: 350px;
             }
         }
     </style>
@@ -700,10 +877,234 @@
         </a>
     </div>
 
+    <!-- Chatbot de WhatsApp -->
+    <div class="chatbot-container chatbot-closed" id="chatbot">
+        <div class="chatbot-header">
+            <h3 class="chatbot-title"><i class="fab fa-whatsapp whatsapp-icon"></i> Asistente Virtual</h3>
+            <button class="chatbot-toggle" id="toggleChatbot">
+                <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
+        <div class="chatbot-body">
+            <div class="chat-messages" id="chatMessages">
+                <!-- Los mensajes se añadirán dinámicamente aquí -->
+            </div>
+            <div class="chat-input-container">
+                <input type="text" class="chat-input" id="chatInput" placeholder="Escribe tu mensaje...">
+                <button class="chat-send" id="chatSend">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+        <div class="chatbot-footer">
+            <p>Este asistente te redirigirá a WhatsApp. <a href="https://wa.me/51941913884" target="_blank">Contactar directamente</a></p>
+        </div>
+    </div>
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
+
+const chatbotState = {
+            step: 0,
+            userName: '',
+            userEmail: '',
+            userPhone: '',
+            serviceInterest: '',
+            projectDetails: ''
+        };
+        
+        // Flujo de conversación
+        const conversationFlow = [
+            {
+                bot: "¡Hola! 👋 Soy el asistente virtual de Servicios Académicos. ¿Cómo te llamas?",
+                options: []
+            },
+            {
+                bot: "Mucho gusto {{name}}. ¿En qué servicio estás interesado?",
+                options: ["Tesis", "Artículo científico", "Reducción de similitud", "Formato APA", "Presentación PowerPoint", "Otro"]
+            },
+            {
+                bot: "Entendido, {{service}}. ¿Podrías contarme brevemente sobre tu proyecto?",
+                options: []
+            },
+            {
+                bot: "Gracias por la información. Para poder ayudarte mejor, ¿me podrías dar tu número de teléfono?",
+                options: []
+            },
+            {
+                bot: "Perfecto. ¿Y tu correo electrónico para enviarte más información?",
+                options: []
+            },
+            {
+                bot: "¡Gracias {{name}}! Con esta información podemos ayudarte. ¿Quieres que te contactemos por WhatsApp para continuar?",
+                options: ["Sí, enviar a WhatsApp", "No, gracias"]
+            }
+        ];
+        
+        // Elementos del DOM
+        const chatbot = document.getElementById('chatbot');
+        const toggleBtn = document.getElementById('toggleChatbot');
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const chatSend = document.getElementById('chatSend');
+        
+        // Alternar visibilidad del chatbot
+        toggleBtn.addEventListener('click', () => {
+            chatbot.classList.toggle('chatbot-closed');
+            const icon = toggleBtn.querySelector('i');
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+            
+            if (!chatbot.classList.contains('chatbot-closed')) {
+                // Si se abre, iniciar conversación si es la primera vez
+                if (chatbotState.step === 0) {
+                    setTimeout(() => {
+                        addBotMessage(conversationFlow[0].bot);
+                    }, 500);
+                }
+            }
+        });
+        
+        
+        // Abrir automáticamente el chatbot después de 10 segundos
+        setTimeout(() => {
+            if (chatbot.classList.contains('chatbot-closed')) {
+                chatbot.classList.remove('chatbot-closed');
+                const icon = toggleBtn.querySelector('i');
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+                
+                // Iniciar conversación
+                setTimeout(() => {
+                    addBotMessage(conversationFlow[0].bot);
+                }, 500);
+            }
+        }, 10000);
+        
+        // Función para añadir mensaje del bot
+        function addBotMessage(message) {
+            // Reemplazar variables en el mensaje
+            let formattedMessage = message
+                .replace('{{name}}', chatbotState.userName || '')
+                .replace('{{service}}', chatbotState.serviceInterest || 'el servicio');
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message bot-message';
+            messageDiv.textContent = formattedMessage;
+            chatMessages.appendChild(messageDiv);
+            
+            // Añadir opciones si existen
+            const currentStep = conversationFlow[chatbotState.step];
+            if (currentStep.options && currentStep.options.length > 0) {
+                const optionsDiv = document.createElement('div');
+                optionsDiv.className = 'chat-options';
+                
+                currentStep.options.forEach(option => {
+                    const button = document.createElement('button');
+                    button.className = 'chat-option';
+                    button.textContent = option;
+                    button.addEventListener('click', () => handleOptionSelect(option));
+                    optionsDiv.appendChild(button);
+                });
+                
+                chatMessages.appendChild(optionsDiv);
+            }
+            
+            // Desplazar al último mensaje
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        // Función para añadir mensaje del usuario
+        function addUserMessage(message) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message user-message';
+            messageDiv.textContent = message;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        // Manejar selección de opciones
+        function handleOptionSelect(option) {
+            addUserMessage(option);
+            processUserResponse(option);
+        }
+        
+        // Manejar envío de mensaje por teclado
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && chatInput.value.trim() !== '') {
+                sendMessage();
+            }
+        });
+        
+        // Manejar envío de mensaje por botón
+        chatSend.addEventListener('click', () => {
+            if (chatInput.value.trim() !== '') {
+                sendMessage();
+            }
+        });
+        
+        // Función para enviar mensaje
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            addUserMessage(message);
+            processUserResponse(message);
+            chatInput.value = '';
+        }
+        
+        // Procesar respuesta del usuario
+        function processUserResponse(response) {
+            switch (chatbotState.step) {
+                case 0: // Nombre
+                    chatbotState.userName = response;
+                    chatbotState.step++;
+                    setTimeout(() => addBotMessage(conversationFlow[1].bot), 1000);
+                    break;
+                case 1: // Servicio de interés
+                    chatbotState.serviceInterest = response;
+                    chatbotState.step++;
+                    setTimeout(() => addBotMessage(conversationFlow[2].bot), 1000);
+                    break;
+                case 2: // Detalles del proyecto
+                    chatbotState.projectDetails = response;
+                    chatbotState.step++;
+                    setTimeout(() => addBotMessage(conversationFlow[3].bot), 1000);
+                    break;
+                case 3: // Teléfono
+                    chatbotState.userPhone = response;
+                    chatbotState.step++;
+                    setTimeout(() => addBotMessage(conversationFlow[4].bot), 1000);
+                    break;
+                case 4: // Correo electrónico
+                    chatbotState.userEmail = response;
+                    chatbotState.step++;
+                    setTimeout(() => addBotMessage(conversationFlow[5].bot), 1000);
+                    break;
+                case 5: // Confirmación para enviar a WhatsApp
+                    if (response.toLowerCase().includes('sí') || response.toLowerCase().includes('si')) {
+                        // Construir mensaje para WhatsApp
+                        const whatsappMessage = encodeURIComponent(
+                            `Hola, soy ${chatbotState.userName}. Estoy interesado en: ${chatbotState.serviceInterest}.\n\n` +
+                            `Detalles de mi proyecto: ${chatbotState.projectDetails}\n\n` +
+                            `Mis datos de contacto:\nTeléfono: ${chatbotState.userPhone}\nEmail: ${chatbotState.userEmail}`
+                        );
+                        
+                        // Redirigir a WhatsApp
+                        window.location.href = `https://wa.me/51941913884?text=${whatsappMessage}`;
+                    } else {
+                        addBotMessage("De acuerdo. Si cambias de opinión, puedes contactarnos en cualquier momento. ¡Que tengas un buen día!");
+                        chatbotState.step = 0;
+                        setTimeout(() => {
+                            // Resetear conversación después de 5 segundos
+                            chatMessages.innerHTML = '';
+                            setTimeout(() => addBotMessage(conversationFlow[0].bot), 500);
+                        }, 5000);
+                    }
+                    break;
+            }
+        }
+
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
