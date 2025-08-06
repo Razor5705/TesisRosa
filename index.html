@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios Académicos - Asesoría, Redacción y Revisión</title>
+    <meta name="description" content="Servicios profesionales de asesoría académica, redacción de tesis, artículos científicos, reducción de similitud Turnitin y más.">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-blue: #1a365d;
+            --secondary-blue: #2c5282;
+            --accent-red: #e53e3e;
+            --light-red: #fc8181;
+            --light-bg: #f8f9fa;
+            --dark-text: #2d3748;
+            --light-text: #718096;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+        
+        .navbar {
+            background-color: var(--primary-blue);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: white !important;
+        }
+        
+        .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.85) !important;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s;
+        }
+        
+        .navbar-nav .nav-link:hover {
+            color: white !important;
+        }
+        
+        .navbar-nav .nav-link.active {
+            color: white !important;
+            position: relative;
+        }
+        
+        .navbar-nav .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 15%;
+            width: 70%;
+            height: 3px;
+            background-color: white;
+            border-radius: 2px;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: white;
+            padding: 100px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+            font-weight: 600;
+            padding: 12px 25px;
+            border-radius: 50px;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .btn-whatsapp:hover {
+            background-color: #128C7E;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-whatsapp i {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 3rem;
+            color: var(--primary-blue);
+            text-align: center;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-red);
+            border-radius: 2px;
+        }
+        
+        .services-section {
+            padding: 80px 0;
+            background-color: var(--light-bg);
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 100%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: none;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-icon {
+            background-color: var(--primary-blue);
+            color: white;
+            font-size: 2rem;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .service-body {
+            padding: 25px;
+        }
+        
+        .service-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+        }
+        
+        .service-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .service-list li {
+            margin-bottom: 8px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .service-list li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 3px;
+            color: var(--accent-red);
+        }
+        
+        .about-section {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .about-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            border: none;
+            height: 100%;
+        }
+        
+        .about-header {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .about-body {
+            padding: 30px;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--accent-red);
+            margin-bottom: 20px;
+        }
+        
+        .contact-section {
+            padding: 80px 0;
+            background: linear-gradient(to bottom, var(--light-bg) 0%, white 100%);
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .form-control, .form-select {
+            border: 1px solid #e2e8f0;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: var(--accent-red);
+            box-shadow: 0 0 0 0.25rem rgba(229, 62, 62, 0.15);
+        }
+        
+        .btn-primary-custom {
+            background-color: var(--accent-red);
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary-custom:hover {
+            background-color: #c53030;
+            transform: translateY(-2px);
+        }
+        
+        .contact-info {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            height: 100%;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+        
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--accent-red);
+            min-width: 40px;
+            margin-top: 5px;
+        }
+        
+        .footer {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-red);
+            border-radius: 2px;
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent-red);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            margin-top: 40px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+        
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 100;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-graduation-cap me-2"></i>Servicios Académicos
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#inicio">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#servicios">Servicios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#nosotros">Sobre Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacto">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h1 class="hero-title">SERVICIOS ACADÉMICOS</h1>
+                    <h2 class="hero-subtitle">Asesoría – Redacción – Revisión</h2>
+                    <p class="lead mb-4">Brindamos apoyo profesional para tus trabajos académicos, desde tesis hasta artículos científicos, con los más altos estándares de calidad.</p>
+                    <a href="https://wa.me/51941913884" class="btn btn-whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+                    </a>
+                </div>
+                <div class="col-lg-6 text-center d-none d-lg-block">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 800 800'%3E%3Crect fill='%231a365d' width='800' height='800'/%3E%3Cg fill='%23e53e3e' opacity='0.8'%3E%3Ccircle cx='400' cy='400' r='200'/%3E%3Cpath d='M400,100 C200,100 100,200 100,400 C100,600 200,700 400,700 C600,700 700,600 700,400 C700,200 600,100 400,100 Z'/%3E%3C/g%3E%3Cpath fill='%23ffffff' d='M350,300 L450,300 L450,500 L350,500 Z'/%3E%3Ccircle fill='%23ffffff' cx='400' cy='250' r='30'/%3E%3Cpath fill='%23ffffff' d='M320,400 L480,400 L480,420 L320,420 Z'/%3E%3Cpath fill='%23ffffff' d='M320,450 L480,450 L480,470 L320,470 Z'/%3E%3C/svg%3E" alt="Servicios Académicos" class="img-fluid" width="500">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios Section -->
+    <section id="servicios" class="services-section">
+        <div class="container">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="service-body">
+                            <h3 class="service-title">Tesis y Trabajos Académicos</h3>
+                            <ul class="service-list">
+                                <li>Tesis de Grado – Posgrado</li>
+                                <li>Trabajos de Suficiencia Profesional</li>
+                                <li>Artículos Científicos (Nivel SCIELO)</li>
+                                <li>Ensayos</li>
+                                <li>Proyectos de Inversión</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="service-body">
+                            <h3 class="service-title">Revisión y Formato</h3>
+                            <ul class="service-list">
+                                <li>Reducción de Similitud Turnitin</li>
+                                <li>Aplicación de Normas APA 7</li>
+                                <li>Normas de la Institución Univ.</li>
+                                <li>Normas Ortográficas</li>
+                                <li>Corrección de Estilo</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-object-group"></i>
+                        </div>
+                        <div class="service-body">
+                            <h3 class="service-title">Materiales Complementarios</h3>
+                            <ul class="service-list">
+                                <li>Mapa Mental y Conceptual</li>
+                                <li>Flujograma</li>
+                                <li>Esquema</li>
+                                <li>Presentación en Power Point</li>
+                                <li>Resúmenes Ejecutivos</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Nosotros Section -->
+    <section id="nosotros" class="about-section">
+        <div class="container">
+            <h2 class="section-title">Sobre Nosotros</h2>
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="about-card">
+                        <div class="about-header">
+                            <h3>Nuestro Equipo</h3>
+                        </div>
+                        <div class="about-body">
+                            <div class="text-center">
+                                <i class="fas fa-users feature-icon"></i>
+                            </div>
+                            <p>Contamos con un equipo de profesionales altamente capacitados, incluyendo doctores, magísteres y especialistas en diversas áreas del conocimiento. Cada miembro de nuestro equipo posee amplia experiencia en investigación académica y redacción científica.</p>
+                            <p>Nuestros expertos están comprometidos con la excelencia académica y mantienen altos estándares de calidad en cada proyecto que realizamos.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="about-card">
+                        <div class="about-header">
+                            <h3>Misión</h3>
+                        </div>
+                        <div class="about-body">
+                            <div class="text-center">
+                                <i class="fas fa-bullseye feature-icon"></i>
+                            </div>
+                            <p>Brindar apoyo académico de calidad a estudiantes universitarios y posgraduados, facilitando su éxito académico mediante servicios profesionales de asesoría, redacción y revisión de trabajos.</p>
+                            <p>Nos comprometemos a ofrecer soluciones personalizadas que cumplan con los más altos estándares académicos y éticos, respetando la originalidad y contribuyendo al desarrollo intelectual de nuestros clientes.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="about-card">
+                        <div class="about-header">
+                            <h3>Visión</h3>
+                        </div>
+                        <div class="about-body">
+                            <div class="text-center">
+                                <i class="fas fa-eye feature-icon"></i>
+                            </div>
+                            <p>Ser reconocidos como la empresa líder en servicios académicos de calidad en el ámbito hispanohablante, distinguidos por nuestra excelencia, profesionalismo y contribución al éxito académico de nuestros clientes.</p>
+                            <p>Aspiramos a expandir nuestra oferta de servicios manteniendo siempre nuestro compromiso con la calidad y la ética académica, incorporando las últimas tecnologías para ofrecer soluciones innovadoras.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto Section -->
+    <section id="contacto" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Contáctanos</h2>
+            <div class="row g-4">
+                <div class="col-lg-7">
+                    <div class="contact-form">
+                        <h3 class="mb-4">Envía tu consulta</h3>
+                        <form id="contactForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" placeholder="Nombre completo" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control" placeholder="Correo electrónico" required>
+                                </div>
+                            </div>
+                            <input type="tel" class="form-control" placeholder="Teléfono">
+                            <select class="form-select" required>
+                                <option value="" selected disabled>Tipo de servicio</option>
+                                <option>Tesis</option>
+                                <option>Artículo científico</option>
+                                <option>Reducción de similitud</option>
+                                <option>Presentación PowerPoint</option>
+                                <option>Formato APA</option>
+                                <option>Otro</option>
+                            </select>
+                            <textarea class="form-control" rows="5" placeholder="Describe tu proyecto o consulta" required></textarea>
+                            <button type="submit" class="btn btn-primary-custom">Enviar Mensaje</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="col-lg-5">
+                    <div class="contact-info">
+                        <h3 class="mb-4">Información de contacto</h3>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <h5>WhatsApp</h5>
+                                <p>51 963 218 441</p>
+                                <a href="https://wa.me/51963218441" class="btn btn-whatsapp mt-2" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Enviar mensaje
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h5>Correo electrónico</h5>
+                                <p>moonrossy@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h5>Horario de atención</h5>
+                                <p>Lunes a Viernes: 9:00 AM - 6:00 PM</p>
+                                <p>Sábados: 9:00 AM - 1:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h4 class="footer-title">Servicios Académicos</h4>
+                    <p>Brindamos servicios profesionales de asesoría, redacción y revisión para estudiantes universitarios y posgraduados, ayudándoles a alcanzar sus metas académicas.</p>
+                    <div class="social-links mt-4">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h4 class="footer-title">Enlaces rápidos</h4>
+                    <ul class="footer-links">
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#servicios">Servicios</a></li>
+                        <li><a href="#nosotros">Sobre Nosotros</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4">
+                    <h4 class="footer-title">Contacto</h4>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-phone-alt me-2"></i> 94 191 3884</li>
+                        <li><i class="fas fa-envelope me-2"></i> contacto@serviciosacademicos.com</li>
+                        <li><i class="fas fa-map-marker-alt me-2"></i> Lima, Perú</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Servicios Académicos. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/51963218441" class="btn btn-whatsapp" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Form submission handler
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Here you would normally send the form data to a server
+            // For this demo, we'll just show an alert
+            alert('¡Gracias por tu mensaje! Te contactaremos pronto.');
+            this.reset();
+        });
+        
+        // Update navbar active state on scroll
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
