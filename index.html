@@ -376,6 +376,21 @@
             color: rgba(255, 255, 255, 0.6);
             font-size: 0.9rem;
         }
+
+        .hero-img {
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border: 5px solid white;
+    transition: all 0.3s ease;
+    max-width: 90%;
+
+ }
+ .hero-img:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+ }
+
+
         
         .whatsapp-float {
             position: fixed;
@@ -410,6 +425,14 @@
             
             .section-title {
                 font-size: 1.8rem;
+            }
+
+            .hero-img-container {
+                margin-top: 40px;
+            }
+            
+            .hero-img-wrapper {
+                height: 400px;
             }
         }
 
@@ -587,6 +610,28 @@
             .chatbot-body {
                 height: 350px;
             }
+
+            .hero-img-wrapper {
+                height: 350px;
+            }
+        }
+
+        /* Logo styling */
+        .logo-text {
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .renacyt-badge {
+            background-color: #e53e3e;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 8px;
+            vertical-align: super;
         }
     </style>
 </head>
@@ -631,8 +676,13 @@
                         <i class="fab fa-whatsapp"></i> ¿Cómo puedo ayudarte?
                     </a>
                 </div>
-                <div class="col-lg-6 text-center d-none d-lg-block">
-                    <img src="Imagen1.jpg" alt="Servicios Académicos" class="img-fluid" width="500">
+                <div class="col-lg-6 hero-img-container">
+                    <div class="hero-img-wrapper">
+                        <img src="Imagen1.jpg" alt="Servicios Académicos" class="hero-img">
+                        <div class="img-frame"></div>
+                        <div class="img-reflection"></div>
+                        <div class="img-highlight"></div>
+                    </div>
                 </div>
             </div>
         </div>
